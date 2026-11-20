@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Trawl
+GenericName=Remote Archive Browser
+Comment=Pull selected files out of remote ZIP, RAR and ISO archives
+Exec=trawl %U
+TryExec=trawl
+Icon=io.github.Swaggyxren.Trawl
+Terminal=false
+Categories=Utility;Archiving;GTK;
+Keywords=archive;zip;rar;iso;download;range;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;
+StartupNotify=true

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.Swaggyxren.Trawl</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Trawl</name>
+  <summary>Pull selected files out of remote archives</summary>
+
+  <description>
+    <p>
+      Trawl browses ZIP, RAR and ISO archives that live on a web server. It reads
+      only the archive index over HTTP byte ranges, then downloads just the files
+      you tick — there is no need to save the whole archive first.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>ZIP and ZIP64 with stored, deflate, bzip2 and zstd entries</li>
+      <li>Stored RAR 4 and RAR 5 entries</li>
+      <li>ISO 9660 images with Joliet and Rock Ridge names</li>
+      <li>Parallel downloads with pause-safe resume for stored entries</li>
+      <li>Name filter, custom HTTP headers and optional slow mode</li>
+      <li>Link resolvers for Pixeldrain, MediaFire, Buzzheavier and Dropbox</li>
+    </ul>
+    <p>
+      Compressed RAR entries, encrypted archives, 7z, UDF-only ISO images and
+      split archives are not supported. Trawl refuses unsafe entry paths and
+      never writes through a symbolic link.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.Swaggyxren.Trawl.desktop</launchable>
+  <provides>
+    <binary>trawl</binary>
+  </provides>
+
+  <categories>
+    <category>Utility</category>
+    <category>Archiving</category>
+    <category>GTK</category>
+  </categories>
+
+  <keywords>
+    <keyword>archive</keyword>
+    <keyword>zip</keyword>
+    <keyword>rar</keyword>
+    <keyword>iso</keyword>
+    <keyword>download</keyword>
+  </keywords>
+
+  <developer id="io.github.Swaggyxren">
+    <name>Swaggyxren</name>
+  </developer>
+  <url type="homepage">https://github.com/Swaggyxren/trawl</url>
+  <url type="bugtracker">https://github.com/Swaggyxren/trawl/issues</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Browsing a remote ZIP archive in Trawl</caption>
+      <image>https://raw.githubusercontent.com/Swaggyxren/trawl/main/data/screenshots/home.png</image>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="0.1.0" date="2026-11-20">
+      <description>
+        <p>First release: remote ZIP/RAR/ISO browsing and selective downloads.</p>
+      </description>
+    </release>
+  </releases>
+</component>

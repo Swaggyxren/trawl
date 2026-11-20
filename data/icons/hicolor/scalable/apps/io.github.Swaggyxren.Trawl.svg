@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <clipPath id="net-clip">
+      <path d="M20 58 Q64 78 108 58 L94 94 Q64 108 34 94 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Hard offset shadow -->
+  <rect x="14" y="14" width="112" height="112" fill="#000000"/>
+
+  <!-- Flat paper tile with a square black outline -->
+  <rect x="6" y="6" width="112" height="112" fill="#FFF8E7" stroke="#000000" stroke-width="6"/>
+
+  <!-- Trawl handle -->
+  <path d="M98 28 L74 52" stroke="#000000" stroke-width="12" stroke-linecap="square"/>
+  <path d="M98 28 L74 52" stroke="#FFE14D" stroke-width="6" stroke-linecap="square"/>
+
+  <!-- Files caught in the net -->
+  <g transform="rotate(-9 60 40)">
+    <rect x="44" y="16" width="34" height="44" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
+    <path d="M66 16 H78 L66 28 Z" fill="#FF7AB6" stroke="#000000" stroke-width="3" stroke-linejoin="miter"/>
+    <path d="M50 34 H72 M50 42 H68 M50 50 H71" stroke="#000000" stroke-width="3" stroke-linecap="square"/>
+  </g>
+  <g transform="rotate(7 78 44)">
+    <rect x="64" y="26" width="28" height="36" fill="#B6F23C" stroke="#000000" stroke-width="4"/>
+    <path d="M82 26 H92 L82 36 Z" fill="#FFFFFF" stroke="#000000" stroke-width="3" stroke-linejoin="miter"/>
+  </g>
+
+  <!-- Net body -->
+  <path d="M20 58 Q64 78 108 58 L94 94 Q64 108 34 94 Z"
+        fill="#4D9DFF" stroke="#000000" stroke-width="5" stroke-linejoin="miter"/>
+
+  <!-- Net mesh -->
+  <g fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="square" clip-path="url(#net-clip)">
+    <path d="M30 62 L44 100"/>
+    <path d="M47 68 L56 104"/>
+    <path d="M64 70 L64 106"/>
+    <path d="M81 68 L72 104"/>
+    <path d="M98 62 L84 100"/>
+    <path d="M25 73 Q64 88 103 73"/>
+    <path d="M29 85 Q64 98 99 85"/>
+  </g>
+
+  <!-- Heavy net rim -->
+  <path d="M20 58 Q64 78 108 58" fill="none" stroke="#000000" stroke-width="5" stroke-linecap="square"/>
+</svg>

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build / packaging
+build/
+dist/
+pkg/
+*.tar.gz
+src/trawl-*/
+
+# Logs and diagnostics
+launches.jsonl
+*.log
+
+# Downloaded / partial test artifacts
+*.part
+*.trawl-part
+/test-downloads/
+/tests/downloads/
+test-*.zip
+test-*.rar
+test-*.iso
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+data/screenshots/*.tmp

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trawl"
+version = "0.1.0"
+description = "Browse remote ZIP, RAR and ISO archives and download only selected files"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Swaggyxren" }]
+keywords = ["archive", "zip", "rar", "iso", "download", "gtk", "libadwaita"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Desktop Environment :: Gnome",
+    "Topic :: System :: Archiving",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Swaggyxren/trawl"
+Repository = "https://github.com/Swaggyxren/trawl"
+Issues = "https://github.com/Swaggyxren/trawl/issues"
+
+[project.scripts]
+trawl = "trawl.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+trawl = ["style.css"]

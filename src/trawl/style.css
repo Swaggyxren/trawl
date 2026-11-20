@@ -1,0 +1,1089 @@
+/*
+ * Trawl — Neubrutalism skin.
+ *
+ * Flat, loud fills. Thick black outlines. Hard offset shadows with zero blur.
+ * No rounded corners anywhere. Black text sits on every bright fill; white
+ * text is only used on black, which keeps contrast at WCAG AA or better.
+ */
+
+@define-color nb-ink     #000000;
+@define-color nb-paper   #FFF8E7;
+@define-color nb-white   #FFFFFF;
+@define-color nb-yellow  #FFE14D;
+@define-color nb-pink    #FF7AB6;
+@define-color nb-blue    #4D9DFF;
+@define-color nb-lime    #B6F23C;
+@define-color nb-lilac   #C9A8FF;
+@define-color nb-orange  #FF9A3C;
+@define-color nb-red     #FF5A5A;
+
+/* Kept so older class names keep working. */
+@define-color nb-black #000000;
+@define-color nb-green #B6F23C;
+
+/* ---------------------------------------------------------------- surface */
+.nb-root {
+  background-color: @nb-paper;
+  color: @nb-ink;
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+.nb-root label { color: inherit; }
+
+.nb-root entry,
+.nb-root textview,
+.nb-root row,
+.nb-root checkbutton { color: @nb-ink; }
+
+.nb-root .dim-label,
+.nb-root .caption {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------- dialogs */
+/* The dark, rounded surface is Adw.Dialog's own CSS node ("dialog" / its
+ * internal sheet), not the ToolbarView we add. Restyle that node directly so
+ * every popup inherits paper, ink and square corners. */
+dialog,
+dialog.nb-root,
+dialog.nb-alert {
+  background-color: @nb-paper;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+dialog toolbarview,
+dialog toolbarview > *,
+dialog clamp,
+dialog .box,
+dialog .revealer,
+dialog .windowhandle,
+dialog .centerbox {
+  background-color: @nb-paper;
+  background-image: none;
+  color: @nb-ink;
+  border-radius: 0;
+}
+
+dialog headerbar {
+  background-color: @nb-yellow;
+  background-image: none;
+  color: @nb-ink;
+  border-bottom: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+dialog headerbar label,
+dialog headerbar windowtitle title,
+dialog headerbar windowtitle subtitle {
+  color: @nb-ink;
+  opacity: 1;
+  font-weight: 900;
+}
+
+dialog label,
+dialog .dim-label,
+dialog .caption,
+dialog .subtitle,
+dialog .heading {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* Adw.AlertDialog keeps its content in a separate CSS subtree whose internal
+ * gizmos are painted white by libadwaita. Override those nodes explicitly. */
+dialog widget,
+dialog .widget,
+.alert widget,
+.nb-alert widget,
+dialog .message-area,
+dialog .heading-bin,
+dialog .response-area,
+dialog .body-scrolled-window,
+dialog .body,
+dialog .title-2,
+dialog .title-4 {
+  background-color: transparent;
+  background-image: none;
+  color: @nb-ink;
+  border-radius: 0;
+}
+
+.alert label,
+.nb-alert label,
+dialog .body,
+dialog .title-2,
+dialog .title-4 {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+dialog placeholder { color: #424242; }
+
+dialog list.boxed-list,
+dialog list.boxed-list > row,
+dialog row {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+dialog .nb-panel {
+  background-color: @nb-white;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 @nb-ink;
+}
+
+/* Modal alerts are Adw.Windows so every node is under our CSS control. */
+window.nb-alert {
+  background-color: @nb-paper;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+window.nb-alert headerbar {
+  background-color: @nb-yellow;
+  background-image: none;
+  color: @nb-ink;
+  border-bottom: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+window.nb-alert label,
+.nb-alert-body {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* Strong, scoped rules so the modal's buttons ignore libadwaita defaults. */
+window.nb-alert button.nb-secondary {
+  background: @nb-white;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+window.nb-alert button.nb-red {
+  background: @nb-red;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+window.nb-alert button.nb-green {
+  background: @nb-lime;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+window.nb-alert button.nb-pink {
+  background: @nb-pink;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+window.nb-alert button.nb-pink label,
+.nb-root .nb-pink label {
+  color: @nb-ink;
+}
+
+.nb-root separator { background-color: @nb-ink; }
+
+.nb-root scrolledwindow { background-color: transparent; }
+
+/* Graph-paper canvas behind the hero. */
+.nb-canvas {
+  background-color: @nb-paper;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ------------------------------------------------------------- window bar */
+.nb-root headerbar {
+  background-color: @nb-paper;
+  background-image: none;
+  color: @nb-ink;
+  border-bottom: 4px solid @nb-ink;
+  box-shadow: none;
+  min-height: 52px;
+}
+
+.nb-root headerbar windowtitle .title,
+.nb-root headerbar .title {
+  font-weight: 900;
+  font-size: 1.1em;
+  letter-spacing: -0.02em;
+  color: @nb-ink;
+}
+
+.nb-root headerbar windowtitle .subtitle,
+.nb-root headerbar .subtitle {
+  font-family: ui-monospace, monospace;
+  font-size: 0.8em;
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* ------------------------------------------------------- window controls */
+/* Square white boxes with a hard shadow. The inner icon image must be
+ * stripped too: libadwaita otherwise paints a grey translucent circle on it. */
+.nb-root windowcontrols button,
+.nb-root windowcontrols button.titlebutton,
+.nb-root windowcontrols button:focus,
+.nb-root windowcontrols button:focus-visible,
+.nb-root windowcontrols button:backdrop,
+.nb-root windowcontrols button.titlebutton:focus,
+.nb-root windowcontrols button.titlebutton:focus-visible,
+.nb-root windowcontrols button.titlebutton:backdrop {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+  margin: 0 4px;
+  box-shadow: 2px 2px 0 @nb-ink;
+}
+
+.nb-root windowcontrols button:hover,
+.nb-root windowcontrols button.titlebutton:hover {
+  background-color: @nb-yellow;
+  background-image: none;
+  border-radius: 0;
+}
+
+.nb-root windowcontrols button.close,
+.nb-root windowcontrols button.titlebutton.close {
+  background-color: @nb-red;
+  background-image: none;
+}
+
+.nb-root windowcontrols button.close:hover,
+.nb-root windowcontrols button.titlebutton.close:hover {
+  background-color: @nb-yellow;
+}
+
+.nb-root windowcontrols button:active,
+.nb-root windowcontrols button.titlebutton:active {
+  background-color: @nb-white;
+  background-image: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.nb-root windowcontrols button image,
+.nb-root windowcontrols button:hover image,
+.nb-root windowcontrols button:active image,
+.nb-root windowcontrols button:focus image,
+.nb-root windowcontrols button:backdrop image,
+.nb-root windowcontrols button.titlebutton image,
+.nb-root windowcontrols button.titlebutton:hover image,
+.nb-root windowcontrols button.titlebutton:active image,
+.nb-root windowcontrols button.titlebutton:focus image,
+.nb-root windowcontrols button.titlebutton:backdrop image {
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Sticky-note style hint under the empty-state hero. */
+.nb-note,
+.nb-note label {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 10px 12px;
+  margin: 4px 8px 8px 2px;
+  box-shadow: 5px 5px 0 @nb-ink;
+  font-weight: 600;
+  font-size: 0.92em;
+  opacity: 1;
+}
+
+.nb-root .nb-note,
+.nb-root .nb-note label,
+.nb-root .nb-note:backdrop,
+.nb-root .nb-note label:backdrop {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* Preference-group titles become black stickers. */
+.nb-root preferencesgroup .heading {
+  background-color: @nb-ink;
+  color: @nb-white;
+  font-weight: 800;
+  padding: 3px 10px;
+}
+
+/* Boxed lists lose libadwaita's rounded container so shadows aren't clipped. */
+.nb-root list.boxed-list,
+.nb-root list.boxed-list > row {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+/* ------------------------------------------------------------------- hero */
+.nb-hero {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 5px solid @nb-ink;
+  border-radius: 0;
+  padding: 20px 22px 24px 22px;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+.nb-hero-title {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: @nb-ink;
+}
+
+.nb-hero-body {
+  font-size: 1.05em;
+  font-weight: 500;
+  color: @nb-ink;
+}
+
+.nb-step {
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 10px 12px;
+  box-shadow: 4px 4px 0 @nb-ink;
+  color: @nb-ink;
+}
+
+.nb-step-1 { background-color: @nb-yellow; }
+.nb-step-2 { background-color: @nb-pink; }
+.nb-step-3 { background-color: @nb-lime; }
+
+.nb-step-num {
+  background-color: @nb-ink;
+  color: @nb-white;
+  font-weight: 900;
+  min-width: 26px;
+  min-height: 26px;
+}
+
+.nb-root .nb-step-num { color: @nb-white; }
+
+.nb-step-text {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Format chips under the main button. */
+.nb-chip {
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 2px 9px;
+  font-weight: 800;
+  font-family: ui-monospace, monospace;
+  font-size: 0.88em;
+  color: @nb-ink;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.nb-chip-yellow { background-color: @nb-yellow; }
+.nb-chip-pink   { background-color: @nb-pink; }
+.nb-chip-blue   { background-color: @nb-blue; }
+.nb-chip-lime   { background-color: @nb-lime; }
+
+/* --------------------------------------------------------- archive choice */
+/* ------------------------------------------------------------- home screen */
+.nb-cta {
+  outline: none;
+}
+
+.nb-root button.nb-cta label,
+.nb-cta label {
+  color: @nb-ink;
+}
+
+.nb-cta:focus-visible {
+  outline: 3px solid @nb-blue;
+  outline-offset: 2px;
+}
+
+.nb-chip-group {
+  padding: 0;
+}
+
+.nb-steps-compact .nb-step {
+  padding: 6px 8px;
+  min-height: 44px;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.nb-steps-compact .nb-step-num {
+  min-width: 20px;
+  min-height: 20px;
+  font-size: 0.82em;
+}
+
+.nb-recent-card {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 14px 16px 16px 16px;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+.nb-recent-card label {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+.nb-small {
+  font-size: 0.85em;
+  padding: 4px 10px;
+  min-width: 26px;
+  min-height: 26px;
+  border-width: 3px;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.nb-recent-row {
+  background-color: @nb-paper;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 8px 10px;
+}
+
+.nb-recent-title {
+  color: @nb-ink;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.nb-recent-sub {
+  color: @nb-ink;
+  font-family: ui-monospace, monospace;
+  font-size: 0.82em;
+  opacity: 0.85;
+}
+
+.nb-choice-name {
+  color: @nb-ink;
+  font-weight: 900;
+  font-size: 1.5em;
+  letter-spacing: -0.03em;
+}
+
+.nb-choice-grid {
+  min-height: 220px;
+}
+
+.nb-choice-grid flowboxchild {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.nb-choice-card {
+  background-color: @nb-yellow;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: 8px 8px 0 @nb-ink;
+  min-height: 200px;
+}
+
+.nb-choice-all { background-color: @nb-pink; }
+.nb-choice-select { background-color: @nb-lime; }
+
+.nb-choice-card:hover {
+  background-color: @nb-lime;
+  box-shadow: 10px 10px 0 @nb-ink;
+}
+
+.nb-choice-card:active {
+  box-shadow: 0 0 0 @nb-ink;
+  background-color: @nb-lime;
+}
+
+.nb-choice-card:focus-visible {
+  outline: 3px solid @nb-blue;
+  outline-offset: 2px;
+}
+
+.nb-choice-title {
+  color: @nb-ink;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+.nb-choice-count {
+  color: @nb-ink;
+  font-family: ui-monospace, monospace;
+  font-weight: 700;
+  background-color: @nb-white;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 3px 8px;
+}
+
+.nb-choice-sub {
+  color: @nb-ink;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.nb-choice-screen label,
+.nb-confirm-screen label {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* Primary action labels stay white even inside the confirm screen. */
+.nb-root .nb-button label,
+.nb-root .nb-cta label {
+  color: @nb-white;
+}
+
+/* Loading and error pages reuse libadwaita status pages. */
+.nb-root statuspage .title {
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  color: @nb-ink;
+}
+
+.nb-root statuspage .description {
+  color: @nb-ink;
+  font-weight: 500;
+}
+
+.nb-root statuspage image.icon,
+.nb-root statuspage .icon {
+  color: @nb-ink;
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------- card */
+.nb-card {
+  background-color: @nb-yellow;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 12px;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+.nb-card-white {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 12px;
+  box-shadow: 8px 8px 0 @nb-ink;
+}
+
+.nb-panel {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 @nb-ink;
+}
+
+/* -------------------------------------------------------------------- tag */
+.nb-tag {
+  background-color: @nb-ink;
+  color: @nb-white;
+  font-weight: 800;
+  font-size: 0.85em;
+  padding: 4px 10px;
+  border-radius: 0;
+}
+
+.nb-tag-blue {
+  background-color: @nb-blue;
+  color: @nb-ink;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+}
+
+/* Labels inherit their parent's ink; restore the tag colours explicitly. */
+.nb-root .nb-tag { color: @nb-white; }
+.nb-root .nb-tag-blue { color: @nb-ink; }
+
+.nb-tag-blue.warning {
+  background-color: @nb-orange;
+}
+
+.nb-highlight {
+  background-color: @nb-yellow;
+  color: @nb-ink;
+  padding: 0 6px;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------- buttons */
+.nb-button {
+  background-color: @nb-ink;
+  background-image: none;
+  color: @nb-white;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 8px 18px;
+  font-weight: 800;
+  box-shadow: 5px 5px 0 @nb-pink;
+}
+
+.nb-button:hover { box-shadow: 7px 7px 0 @nb-pink; background-color: #1F1F1F; }
+
+.nb-button:active {
+  background-color: @nb-pink;
+  color: @nb-ink;
+  box-shadow: 0 0 0 @nb-ink;
+}
+
+.nb-button:disabled,
+.nb-secondary:disabled,
+.nb-pink:disabled {
+  background-color: @nb-paper;
+  background-image: none;
+  color: @nb-ink;
+  opacity: 0.6;
+  border: 3px dashed @nb-ink;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Primary action in dialogs: pink fill, black ink, hard shadow. */
+.nb-pink {
+  background-color: @nb-pink;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  font-weight: 800;
+  box-shadow: 5px 5px 0 @nb-ink;
+}
+
+.nb-pink:hover {
+  background-color: @nb-yellow;
+  box-shadow: 7px 7px 0 @nb-ink;
+}
+
+.nb-pink:active {
+  background-color: @nb-lime;
+  box-shadow: 0 0 0 @nb-ink;
+}
+
+/* The one big call to action. */
+.nb-cta {
+  background-color: @nb-pink;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 12px 30px;
+  font-size: 1.2em;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  box-shadow: 7px 7px 0 @nb-ink;
+}
+
+.nb-cta:hover { background-color: @nb-yellow; box-shadow: 9px 9px 0 @nb-ink; }
+.nb-cta:active { background-color: @nb-lime; box-shadow: 0 0 0 @nb-ink; }
+
+.nb-secondary {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 8px 16px;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+.nb-secondary:hover { background-color: @nb-yellow; box-shadow: 6px 6px 0 @nb-ink; }
+.nb-secondary:active { background-color: @nb-lime; box-shadow: 0 0 0 @nb-ink; }
+
+.nb-red,
+.nb-red:hover {
+  background-color: @nb-red;
+  background-image: none;
+  color: @nb-ink;
+  border-color: @nb-ink;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+.nb-red:hover { box-shadow: 6px 6px 0 @nb-ink; background-color: @nb-pink; }
+.nb-red:active { background-color: @nb-orange; box-shadow: 0 0 0 @nb-ink; }
+
+.nb-orange {
+  background-color: @nb-orange;
+  background-image: none;
+  color: @nb-ink;
+  border-color: @nb-ink;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+.nb-orange:hover { background-color: @nb-yellow; }
+.nb-orange:active { box-shadow: 0 0 0 @nb-ink; }
+
+.nb-green {
+  background-color: @nb-lime;
+  background-image: none;
+  color: @nb-ink;
+  border-color: @nb-ink;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+.nb-icon-button {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 4px;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.nb-icon-button:hover { background-color: @nb-yellow; box-shadow: 5px 5px 0 @nb-ink; }
+.nb-icon-button:active { background-color: @nb-lime; box-shadow: 0 0 0 @nb-ink; }
+.nb-icon-button.nb-red { background-color: @nb-red; }
+.nb-icon-button.nb-red:hover { background-color: @nb-pink; }
+
+/* Loading page: black spinner beside the status text, no oversized icon. */
+.nb-root spinner,
+.nb-root .nb-spinner {
+  color: @nb-ink;
+}
+
+.nb-loading-label {
+  color: @nb-ink;
+  font-weight: 600;
+}
+
+/* Cancel gets a single blue ring only for keyboard focus. */
+.nb-root .nb-cancel {
+  outline: none;
+}
+
+.nb-root .nb-cancel:focus-visible {
+  outline: 3px solid @nb-blue;
+  outline-offset: 2px;
+}
+
+/* Black focus ring on paper and on colour alike. */
+.nb-button:focus-visible,
+.nb-cta:focus-visible,
+.nb-secondary:focus-visible,
+.nb-icon-button:focus-visible,
+.nb-file-row:focus-visible,
+.nb-session-row:focus-visible {
+  outline: 4px solid @nb-ink;
+  outline-offset: 4px;
+}
+
+/* ----------------------------------------------------------------- inputs */
+.nb-input {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 4px solid @nb-ink;
+  border-radius: 0;
+  padding: 8px 10px;
+  font-family: ui-monospace, monospace;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+.nb-input text,
+.nb-input image { color: @nb-ink; }
+.nb-input placeholder { color: #424242; }
+
+/* One border only. Focus is shown by the yellow fill, never by an outline. */
+.nb-input:focus,
+.nb-input:focus-visible,
+.nb-input:focus-within,
+dialog .nb-input:focus,
+dialog .nb-input:focus-visible,
+dialog .nb-input:focus-within {
+  outline: none;
+  border: 4px solid @nb-ink;
+  box-shadow: 4px 4px 0 @nb-ink;
+  background-color: @nb-yellow;
+}
+
+/* --------------------------------------------------- switches and checkboxes */
+.nb-root switch {
+  background-color: @nb-white;
+  background-image: none;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  min-width: 52px;
+  min-height: 28px;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.nb-root switch:checked { background-color: @nb-lime; }
+
+.nb-root switch:focus-visible {
+  outline: 4px solid @nb-ink;
+  outline-offset: 4px;
+}
+
+.nb-root switch slider {
+  background-color: @nb-ink;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 22px;
+  min-height: 22px;
+  margin: 1px;
+}
+
+.nb-root checkbutton check,
+.nb-root check {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  min-width: 22px;
+  min-height: 22px;
+  box-shadow: none;
+  -gtk-icon-size: 16px;
+}
+
+.nb-root checkbutton check:checked,
+.nb-root check:checked {
+  background-color: @nb-lime;
+  color: @nb-ink;
+}
+
+/* ------------------------------------------------------------------- rows */
+.trawl-file-list,
+.trawl-file-list row {
+  background-color: @nb-paper;
+  background-image: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+.nb-file-row {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border-bottom: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 6px 10px;
+}
+
+.nb-file-row:hover { background-color: #FFF1A8; }
+
+.nb-file-row:checked {
+  background-color: @nb-yellow;
+  border-left: 8px solid @nb-blue;
+}
+
+.nb-file-row:disabled {
+  background-color: @nb-paper;
+  opacity: 0.75;
+}
+
+.trawl-file-icon { color: @nb-ink; }
+
+.trawl-file-name,
+.nb-file-name {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: @nb-ink;
+}
+
+.trawl-file-folder,
+.trawl-file-size,
+.nb-file-folder,
+.nb-file-size {
+  font-family: ui-monospace, monospace;
+  font-size: 0.88em;
+  color: @nb-ink;
+  opacity: 0.8;
+}
+
+.trawl-file-size {
+  background-color: @nb-paper;
+  border: 2px solid @nb-ink;
+  padding: 1px 6px;
+  opacity: 1;
+}
+
+.nb-session-row {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 @nb-ink;
+  margin: 4px 8px 12px 2px;
+}
+
+.nb-session-row:hover { background-color: @nb-yellow; }
+.nb-session-row.trawl-active-row {
+  background-color: @nb-yellow;
+  box-shadow: 5px 5px 0 @nb-ink;
+  border-left: 8px solid @nb-pink;
+}
+
+.nb-session-row .title { font-weight: 800; }
+.nb-session-row .subtitle {
+  font-family: ui-monospace, monospace;
+  font-size: 0.82em;
+  color: @nb-ink;
+  opacity: 1;
+}
+
+.nb-warning {
+  color: @nb-ink;
+  background-color: @nb-orange;
+  border: 2px solid @nb-ink;
+  border-radius: 0;
+  padding: 2px;
+}
+
+.nb-error {
+  color: @nb-ink;
+  background-color: @nb-red;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  font-weight: 800;
+  padding: 6px 10px;
+}
+
+/* -------------------------------------------------------------- bottom bar */
+.nb-root .trawl-bottom-bar {
+  background-color: @nb-yellow;
+  border-top: 4px solid @nb-ink;
+}
+
+/* --------------------------------------------------------------- progress */
+.nb-progress {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  padding: 6px 8px;
+  box-shadow: 4px 4px 0 @nb-ink;
+}
+
+.nb-progress progressbar trough {
+  background-color: @nb-paper;
+  background-image: none;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  min-height: 18px;
+}
+
+.nb-progress progressbar progress {
+  background-color: @nb-lime;
+  background-image: repeating-linear-gradient(-45deg,
+    @nb-lime, @nb-lime 10px, #8CC92A 10px, #8CC92A 20px);
+  border: none;
+  border-radius: 0;
+  min-height: 18px;
+}
+
+/* --------------------------------------------------------------- scrollbar */
+.nb-root scrollbar slider {
+  background-color: @nb-ink;
+  border-radius: 0;
+  min-width: 8px;
+  min-height: 8px;
+}
+
+/* ------------------------------------- popovers, tooltips, toasts, alerts */
+popover.menu > contents,
+popover > contents {
+  background-color: @nb-white;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 @nb-ink;
+}
+
+popover modelbutton:hover { background-color: @nb-yellow; }
+
+tooltip.background {
+  background-color: @nb-ink;
+  color: @nb-white;
+  border: 2px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 @nb-pink;
+}
+
+toast {
+  background-color: @nb-ink;
+  color: @nb-white;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 @nb-pink;
+}
+
+.alert button,
+.nb-alert button,
+.alert .response-area button,
+.nb-alert .response-area button,
+dialog .alert .response-area button,
+dialog .nb-alert .response-area button,
+dialog .response-area button {
+  background-color: @nb-white;
+  background-image: none;
+  color: @nb-ink;
+  border: 3px solid @nb-ink;
+  border-radius: 0;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 @nb-ink;
+}
+
+.alert .response-area button:hover,
+dialog .response-area button:hover { background-color: @nb-yellow; }
+.alert .response-area button.destructive-action,
+dialog .response-area button.destructive-action { background-color: @nb-red; color: @nb-ink; }
+.alert .response-area button.suggested-action,
+dialog .response-area button.suggested-action { background-color: @nb-lime; color: @nb-ink; }
+.alert .heading,
+.alert .title,
+dialog .heading,
+dialog .title { color: @nb-ink; font-weight: 900; }
+
+/* No animations: the hard shadow is the only press feedback. */

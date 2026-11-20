@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a problem with Trawl
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: distro
+    attributes:
+      label: Distro
+      options:
+        - Arch / CachyOS
+        - Ubuntu / Debian
+        - Fedora
+        - openSUSE
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop environment
+      placeholder: GNOME 46, KDE Plasma 6, XFCE...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Trawl version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What did you do, and what did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Last lines of ~/.local/share/trawl/launches.jsonl
+      description: |
+        Paste the last few lines only. WARNING: remove private links, tokens or
+        other sensitive information before posting. Logs stay on your machine;
+        you are choosing to copy them here.
+      render: json
+    validations:
+      required: false
